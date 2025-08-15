@@ -14,7 +14,9 @@ import ShoppingCart from '@/learning/02-reactive/exercises/ShoppingCart.vue'
 import RealtimeSearch from '@/learning/02-reactive/exercises/RealtimeSearch.vue'
 import FormValidation from '@/learning/02-reactive/exercises/FormValidation.vue'
 
-// Day 3 - 模板语法组件
+// Day 3 - 模板语法组件（循序渐进学习）
+import Step1VIf from '@/learning/03-template/Step1-VIf.vue'
+import Step2VShow from '@/learning/03-template/Step2-VShow.vue'
 import DirectivesBasics from '@/learning/03-template/DirectivesBasics.vue'
 import ConditionalRender from '@/learning/03-template/ConditionalRender.vue'
 import ListRendering from '@/learning/03-template/ListRendering.vue'
@@ -48,6 +50,8 @@ const components = {
     form: { component: FormValidation, title: '练习3：表单验证', icon: '📋' }
   },
   day3: {
+    step1: { component: Step1VIf, title: '第1步：v-if 基础', icon: '🚀' },
+    step2: { component: Step2VShow, title: '第2步：v-show vs v-if', icon: '🔍' },
     directives: { component: DirectivesBasics, title: '指令基础大全', icon: '🎯' },
     conditional: { component: ConditionalRender, title: '条件渲染深入', icon: '🔀' },
     list: { component: ListRendering, title: '列表渲染进阶', icon: '📋' },
@@ -77,7 +81,7 @@ function switchToDay2(view = 'reactive') {
 }
 
 // 切换到 Day 3
-function switchToDay3(view = 'directives') {
+function switchToDay3(view = 'step1') {
   currentDay.value = 'day3'
   currentView.value = view
 }
@@ -178,6 +182,18 @@ function switchToDay3(view = 'directives') {
       
       <!-- Day 3 导航 -->
       <div v-else-if="currentDay === 'day3'" class="nav-buttons">
+        <button 
+          @click="currentView = 'step1'" 
+          :class="{ active: currentView === 'step1' }"
+        >
+          🚀 第1步
+        </button>
+        <button 
+          @click="currentView = 'step2'" 
+          :class="{ active: currentView === 'step2' }"
+        >
+          🔍 第2步
+        </button>
         <button 
           @click="currentView = 'directives'" 
           :class="{ active: currentView === 'directives' }"
