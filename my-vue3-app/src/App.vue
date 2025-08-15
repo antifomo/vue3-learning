@@ -14,6 +14,18 @@ import ShoppingCart from '@/learning/02-reactive/exercises/ShoppingCart.vue'
 import RealtimeSearch from '@/learning/02-reactive/exercises/RealtimeSearch.vue'
 import FormValidation from '@/learning/02-reactive/exercises/FormValidation.vue'
 
+// Day 3 - 模板语法组件
+import DirectivesBasics from '@/learning/03-template/DirectivesBasics.vue'
+import ConditionalRender from '@/learning/03-template/ConditionalRender.vue'
+import ListRendering from '@/learning/03-template/ListRendering.vue'
+import EventHandling from '@/learning/03-template/EventHandling.vue'
+import FormBinding from '@/learning/03-template/FormBinding.vue'
+
+// Day 3 - 练习组件
+import DynamicForm from '@/learning/03-template/exercises/DynamicForm.vue'
+import FilterableTable from '@/learning/03-template/exercises/FilterableTable.vue'
+import InteractiveGame from '@/learning/03-template/exercises/InteractiveGame.vue'
+
 import { ref, computed } from 'vue'
 
 // 控制显示哪个组件
@@ -34,6 +46,16 @@ const components = {
     cart: { component: ShoppingCart, title: '练习1：购物车系统', icon: '🛒' },
     search: { component: RealtimeSearch, title: '练习2：实时搜索', icon: '🔍' },
     form: { component: FormValidation, title: '练习3：表单验证', icon: '📋' }
+  },
+  day3: {
+    directives: { component: DirectivesBasics, title: '指令基础大全', icon: '🎯' },
+    conditional: { component: ConditionalRender, title: '条件渲染深入', icon: '🔀' },
+    list: { component: ListRendering, title: '列表渲染进阶', icon: '📋' },
+    events: { component: EventHandling, title: '事件处理详解', icon: '🎪' },
+    binding: { component: FormBinding, title: '表单双向绑定', icon: '🔗' },
+    dynamicForm: { component: DynamicForm, title: '练习1：动态表单构建器', icon: '📝' },
+    table: { component: FilterableTable, title: '练习2：可过滤排序表格', icon: '📊' },
+    games: { component: InteractiveGame, title: '练习3：互动游戏集合', icon: '🎮' }
   }
 }
 
@@ -51,6 +73,12 @@ function switchToDay1(view = 'hello') {
 // 切换到 Day 2
 function switchToDay2(view = 'reactive') {
   currentDay.value = 'day2'
+  currentView.value = view
+}
+
+// 切换到 Day 3
+function switchToDay3(view = 'directives') {
+  currentDay.value = 'day3'
   currentView.value = view
 }
 </script>
@@ -73,6 +101,13 @@ function switchToDay2(view = 'reactive') {
           class="day-btn"
         >
           🚀 Day 2: 响应式进阶
+        </button>
+        <button 
+          @click="switchToDay3()"
+          :class="{ active: currentDay === 'day3' }"
+          class="day-btn"
+        >
+          🎨 Day 3: 模板语法
         </button>
       </div>
     </div>
@@ -140,12 +175,67 @@ function switchToDay2(view = 'reactive') {
           📋 表单验证
         </button>
       </div>
+      
+      <!-- Day 3 导航 -->
+      <div v-else-if="currentDay === 'day3'" class="nav-buttons">
+        <button 
+          @click="currentView = 'directives'" 
+          :class="{ active: currentView === 'directives' }"
+        >
+          🎯 指令基础
+        </button>
+        <button 
+          @click="currentView = 'conditional'" 
+          :class="{ active: currentView === 'conditional' }"
+        >
+          🔀 条件渲染
+        </button>
+        <button 
+          @click="currentView = 'list'" 
+          :class="{ active: currentView === 'list' }"
+        >
+          📋 列表渲染
+        </button>
+        <button 
+          @click="currentView = 'events'" 
+          :class="{ active: currentView === 'events' }"
+        >
+          🎪 事件处理
+        </button>
+        <button 
+          @click="currentView = 'binding'" 
+          :class="{ active: currentView === 'binding' }"
+        >
+          🔗 表单绑定
+        </button>
+        <button 
+          @click="currentView = 'dynamicForm'" 
+          :class="{ active: currentView === 'dynamicForm' }"
+        >
+          📝 动态表单
+        </button>
+        <button 
+          @click="currentView = 'table'" 
+          :class="{ active: currentView === 'table' }"
+        >
+          📊 数据表格
+        </button>
+        <button 
+          @click="currentView = 'games'" 
+          :class="{ active: currentView === 'games' }"
+        >
+          🎮 互动游戏
+        </button>
+      </div>
     </div>
     
     <!-- 标题显示 -->
     <div class="title-section">
       <h1>
-        <span class="day-label">{{ currentDay === 'day1' ? 'Day 1' : 'Day 2' }}</span>
+        <span class="day-label">
+          {{ currentDay === 'day1' ? 'Day 1' : 
+             currentDay === 'day2' ? 'Day 2' : 'Day 3' }}
+        </span>
         <span class="separator">|</span>
         <span class="component-title">
           {{ currentComponent.icon }} {{ currentComponent.title }}
@@ -179,7 +269,7 @@ body {
 #app {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding-top: 140px;
+  padding-top: 160px;
   padding-bottom: 40px;
 }
 
@@ -189,7 +279,7 @@ body {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1001;
+  z-index: 1000;
   background: white;
   padding: 10px;
   border-radius: 12px;
@@ -227,10 +317,10 @@ body {
 /* 子导航样式 */
 .sub-nav {
   position: fixed;
-  top: 80px;
+  top: 90px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .nav-buttons {
@@ -257,6 +347,12 @@ body {
 .nav-buttons button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(66, 184, 131, 0.3);
+}
+
+/* 确保导航按钮不会被遮挡 */
+.nav-buttons button {
+  position: relative;
+  z-index: 1;
 }
 
 .nav-buttons button.active {
