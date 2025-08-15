@@ -17,6 +17,8 @@ import FormValidation from '@/learning/02-reactive/exercises/FormValidation.vue'
 // Day 3 - 模板语法组件（循序渐进学习）
 import Step1VIf from '@/learning/03-template/Step1-VIf.vue'
 import Step2VShow from '@/learning/03-template/Step2-VShow.vue'
+import Step3VFor from '@/learning/03-template/Step3-VFor.vue'
+import Step4Events from '@/learning/03-template/Step4-Events.vue'
 import DirectivesBasics from '@/learning/03-template/DirectivesBasics.vue'
 import ConditionalRender from '@/learning/03-template/ConditionalRender.vue'
 import ListRendering from '@/learning/03-template/ListRendering.vue'
@@ -52,6 +54,8 @@ const components = {
   day3: {
     step1: { component: Step1VIf, title: '第1步：v-if 基础', icon: '🚀' },
     step2: { component: Step2VShow, title: '第2步：v-show vs v-if', icon: '🔍' },
+    step3: { component: Step3VFor, title: '第3步：v-for 列表渲染', icon: '📋' },
+    step4: { component: Step4Events, title: '第4步：事件处理进阶', icon: '🎪' },
     directives: { component: DirectivesBasics, title: '指令基础大全', icon: '🎯' },
     conditional: { component: ConditionalRender, title: '条件渲染深入', icon: '🔀' },
     list: { component: ListRendering, title: '列表渲染进阶', icon: '📋' },
@@ -193,6 +197,18 @@ function switchToDay3(view = 'step1') {
           :class="{ active: currentView === 'step2' }"
         >
           🔍 第2步
+        </button>
+        <button 
+          @click="currentView = 'step3'" 
+          :class="{ active: currentView === 'step3' }"
+        >
+          📋 第3步
+        </button>
+        <button 
+          @click="currentView = 'step4'" 
+          :class="{ active: currentView === 'step4' }"
+        >
+          🎪 第4步
         </button>
         <button 
           @click="currentView = 'directives'" 
