@@ -15,6 +15,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 **/.vscode/*
+CLAUDE.md
 # !.vscode/extensions.json
 .idea
 .DS_Store
@@ -24,6 +25,4 @@ dist-ssr
 *.sln
 *.sw?
 
-# 项目配置文件
-CLAUDE.md
 
